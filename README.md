@@ -66,13 +66,6 @@ Instructions on how to set up the environment, train models, and evaluate them c
 
 (Provide step-by-step instructions on how to run the models, including any necessary commands or scripts.)
 
-## Contributing
-
-As this is a group project, contributions are limited to team members. However, feedback and suggestions are welcome.
-
-## Team
-
-- (List of team members with brief introductions or roles)
 
 ## Acknowledgements
 
