@@ -152,7 +152,7 @@ This GAN architecture is tailored for processing MRI brain scans, with the gener
 
 ### Sonia Afrasiabian (SoniaAfrasiabian@my.unt.edu)
 
-Model Overview: 
+Model Overview:
 The model leverages the EfficientNetB0 architecture, which is acclaimed for balancing model complexity with accuracy. Using ImageNet's extensive dataset, it's a solid foundation, able to recognize a broad range of features.  
  
  By employing transfer learning, the pre-trained model was fine-tuned to specialize in the identification of brain tumor images. We're using this approach to apply ImageNet's learning to our specific medical imaging task.  
@@ -164,12 +164,15 @@ Objective: the project's objective is to harness the model's advanced feature re
 
 Model Architecture & Design:
 Foundation: Utilized the EfficientNetB0 architecture, which was pre-trained on the ImageNet dataset. This model is celebrated for its compound scaling method that uniformly scales all dimensions of depth/width/resolution. 
+
 Customization: Input shape tailored to (224x224x3) to match our dataset, allowing the model to process our MRI images effectively. This size was chosen as a balance between detail retention and computational efficiency. 
+
 Data Augmentation: To prevent the model from overfitting and improves its ability to generalize to new, unseen data, I implemented an augmentation strategy with: 
 Random horizontal and vertical flips. 
 Random rotations of up to 20% of 360 degrees. 
 Random zooming up to 20%. 
 Random brightness changes, enhancing contrast by up to 20%. These augmentations were integrated using TensorFlow's Keras preprocessing layers. 
+
 Pooling and Classification Layers: After the base EfficientNetB0 layers, I used GlobalAveragePooling2D to compress the feature maps, reducing the model's complexity and computational load. The final layer is a dense layer with softmax activation, classifying into four categories: glioma, meningioma, notumor, and pituitary tumors. 
 
 Model Training & Validation:
