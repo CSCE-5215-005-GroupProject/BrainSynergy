@@ -28,7 +28,16 @@ Below are the team members involved in this project, each with a subsection dedi
 
 ### Joseph Caldwell (josephcaldwell@my.unt.edu)
 
-As a part of the BrainSynergy Project, my primary focus has been on developing a Generative Adversarial Network (GAN) in which after training I'll repurpose the discriminator as a feature extractor, which will later be integrated into a classification model.
+As a part of the BrainSynergy Project, my primary focus has been on developing an innovative approach that combines a Generative Adversarial Network (GAN) with a repurposed discriminator and an ensemble of classifiers. 
+
+The GAN's discriminator, originally trained to distinguish between real and generated MRI brain scans, is adapted as a powerful feature extractor.
+
+The extracted features are then fed into two distinct classifiers: a Random Forest and a simple Neural Network. 
+
+These classifiers, each bringing their unique strengths to the table, predict the presence and type of brain tumors in the scans. 
+
+To optimize performance, the predictions from both classifiers are ensembled through a majority voting system, ensuring a robust and accurate diagnosis. This model not only leverages the generative power of GANs but also harnesses traditional machine learning and neural network techniques, creating a hybrid solution tailored for medical image analysis.
+
 
 #### Data Plan
 
@@ -71,14 +80,14 @@ The discriminator's role is to classify images as real or generated. Its archite
 
 - **Input Layer**: Accepts 256x256x1 grayscale images (for RGB images, this would be 256x256x3).
 - **Convolutional Layers**: These layers progressively downsample the image:
-  - First layer downsamples to 128x128 with 64 filters.
+  - First layer downsamples to 128x128 with 64 filters, followed by dropout to prevent overfitting.
   - Second layer downsamples to 64x64 with 128 filters, followed by dropout to prevent overfitting.
   - Third layer downsamples to 32x32 with 256 filters, followed by batch normalization for more stable outputs. It is these outputs that will be used as features for the classification model.
-  - Fourth layer downsamples to 16x16 with 512 filters.
+  - Fourth layer downsamples to 16x16 with 512 filters, followed by dropout to prevent overfitting.
 - **Flatten and Dense Layer**: The final output is flattened and passed through a dense layer with a single unit for binary classification.
-- Each convolutional layer uses a 5x5 kernel, a stride of 2x2, and LeakyReLU activation. Dropout is used after some layers to prevent overfitting.
+- Each convolutional layer uses a 5x5 kernel, a stride of 2x2.
 
-#### Summary
+#### GAN Summary
 
 This GAN architecture is tailored for processing MRI brain scans, with the generator creating realistic images from random noise and the discriminator distinguishing between real and generated images. The use of batch normalization and LeakyReLU activation functions contributes to the model's stability and efficiency during training.
 
@@ -92,20 +101,37 @@ This GAN architecture is tailored for processing MRI brain scans, with the gener
 - **Performance Monitoring**: 
   - Tracked discriminator's accuracy and losses to gauge the GAN's training progress.
   - Regularly saved generated images to visually assess the GAN's output quality.
-- **Future Integration**:
-  - Plan to repurpose the discriminator of the GAN as a feature extractor in a classification model.
-  - The classifier will leverage these features to categorize MRI brain scans into one of the four categories.
+  - Trained for 970 epochs on a T4 GPU
+
+#### Random Forest Classifier
+
+- **Configuration:**
+  - Utilized a Random Forest Classifier with 200 trees.
+  - Applied default Scikit-Learn settings for other parameters.
+ 
+- **Role in the Model:**
+  - Key component of the ensemble model, providing robustness and handling complex data patterns.
+  - Complements the Neural Network in feature interpretation and classification.
+
+#### Neural Network Classifier
+
+- **Architecture:**
+  - A sequential model starting with a Flatten layer to convert 3D features into 1D.
+  - First hidden layer: 128 neurons, ReLU activation.
+  - Second hidden layer: 64 neurons, ReLU activation.
+  - Output layer: 4 neurons (one for each class), Softmax activation.
+    
+- **Role in the Model:**
+  - Key component of the ensemble model, providing robustness and handling complex data patterns.
+  - Complements the Random Forest in feature interpretation and classification.
+
 
 #### Challenges and Learnings
 
 - Dealt with the nuances of GAN training, particularly balancing the generator and discriminator training.
 - Learned to implement various TensorFlow functionalities for model checkpointing and resuming training.
-- Ran into trouble installing TensorFlow locally, but given the complexity of the model, ahd to buy some cloud compute anyway, so did all training in Google Colab
-
-#### Future Work
-
-- Explore the integration of the GAN's discriminator into a robust classification model.
-- Evaluate the impact of GAN-generated images on the classifier's performance and accuracy. 
+- Ran into trouble installing TensorFlow locally, but given the complexity of the model, had to buy some cloud compute anyway, so did all training in Google Colab
+ 
 
 #### Code and Resources
 
