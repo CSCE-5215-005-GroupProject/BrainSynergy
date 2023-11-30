@@ -24,9 +24,21 @@ The dataset consists of MRI brain scans, each classified into one of four distin
 
 These steps occur in the datasetPrep.ipynb file within the data folder. 
 
-## Team Members' Models
+## Repository Structure
 
-Below are the team members involved in this project, each with a subsection dedicated to their specific model and data plan.
+- `base_model`: Contains the base model (VGG16).
+- `data`: 
+  - Contains the original dataset, competition data, and kaggle_solutionSet.
+  - `datasetPrep.ipynb` is used for preparing the competition dataset.
+  - `sandbox.csv` and `solution.csv` for Kaggle competition setup.
+- `joe_model`, `piyush_model`, `sina_model`, `sonia_model`: 
+  - Individual directories for each team member.
+  - Internal structures and hierarchies are determined by each member.
+
+## Team Member Models
+
+Each team member's directory (`joe_model`, `piyush_model`, `sina_model`, `sonia_model`) contains their individual model development and results. The specifics of each model, including architecture, data handling, training, and validation approaches, are documented within these directories.
+
 
 ### Joseph Caldwell (josephcaldwell@my.unt.edu)
 
