@@ -125,6 +125,12 @@ This GAN architecture is tailored for processing MRI brain scans, with the gener
   - Key component of the ensemble model, providing robustness and handling complex data patterns.
   - Complements the Random Forest in feature interpretation and classification.
 
+#### Ensemble Method
+
+- **Composition:**
+  - The ensemble combines predictions from the Random Forest Classifier and the Neural Network Classifier.
+- **Voting Mechanism:**
+  - Majority voting system used to finalize the classification decision. Each classifier's prediction is considered a 'vote', and the class with the majority votes is selected as the final output.
 
 #### Challenges and Learnings
 
