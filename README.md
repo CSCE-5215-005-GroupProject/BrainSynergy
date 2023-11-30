@@ -166,7 +166,7 @@ Objective: the project's objective is to harness the model's advanced feature re
 
 ## Model Architecture & Design:
 
-- Foundation: Utilized the EfficientNetB0 architecture, which was pre-trained on the ImageNet dataset. This model is celebrated for its compound scaling method that uniformly scales all dimensions of depth/width/resolution. 
+- Foundation: I Utilized the EfficientNetB0 architecture, which was pre-trained on the ImageNet dataset. I Utilized the EfficientNetB0 architecture, which was pre-trained on the ImageNet dataset. In this model, all dimensions of depth, width, and resolution are uniformly scaled using a compound scaling method. 
 
 - Customization: Input shape tailored to (224x224x3) to match our dataset, allowing the model to process our MRI images effectively. This size was chosen as a balance between detail retention and computational efficiency. 
 
