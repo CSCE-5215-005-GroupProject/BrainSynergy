@@ -152,7 +152,50 @@ This GAN architecture is tailored for processing MRI brain scans, with the gener
 
 ### Sonia Afrasiabian (SoniaAfrasiabian@my.unt.edu)
 
-(Description of their model, data plan, and contributions.)
+Model Overview: 
+The model leverages the EfficientNetB0 architecture, which is acclaimed for balancing model complexity with accuracy. Using ImageNet's extensive dataset, it's a solid foundation, able to recognize a broad range of features.  
+ 
+ By employing transfer learning, the pre-trained model was fine-tuned to specialize in the identification of brain tumor images. We're using this approach to apply ImageNet's learning to our specific medical imaging task.  
+ 
+The model was adapted to our unique dataset, comprising various brain tumor MRI images. The adaptability of EfficientNetB0 enables it to learn from our specific data, thereby enhancing its diagnostic accuracy. 
+ 
+Objective: the project's objective is to harness the model's advanced feature recognition to improve the accuracy of diagnosing brain tumors,and  employ this model to detect and classify brain tumors.
+
+
+Model Architecture & Design:
+Foundation: Utilized the EfficientNetB0 architecture, which was pre-trained on the ImageNet dataset. This model is celebrated for its compound scaling method that uniformly scales all dimensions of depth/width/resolution. 
+Customization: Input shape tailored to (224x224x3) to match our dataset, allowing the model to process our MRI images effectively. This size was chosen as a balance between detail retention and computational efficiency. 
+Data Augmentation: To prevent the model from overfitting and improves its ability to generalize to new, unseen data, I implemented an augmentation strategy with: 
+Random horizontal and vertical flips. 
+Random rotations of up to 20% of 360 degrees. 
+Random zooming up to 20%. 
+Random brightness changes, enhancing contrast by up to 20%. These augmentations were integrated using TensorFlow's Keras preprocessing layers. 
+Pooling and Classification Layers: After the base EfficientNetB0 layers, I used GlobalAveragePooling2D to compress the feature maps, reducing the model's complexity and computational load. The final layer is a dense layer with softmax activation, classifying into four categories: glioma, meningioma, notumor, and pituitary tumors. 
+
+Model Training & Validation:
+Dataset Management: Our dataset, comprising high-resolution brain MRI images, was systematically divided, reserving 80% for training and 20% for validation. This distribution was meticulously chosen to ensure a robust training set while retaining a representative validation set for accurate model performance assessment. 
+
+Training Strategy: The model was compiled with the Adam optimizer, Setting the Model to be Trainable: Initially, the base model, EfficientNetB0, was set to be not trainable (base_model.trainable = False) during the first phase of training. This was done to freeze the weights of the pre-trained network, so only the new layers I added (like the Dense output layer) would be trained.The model was trained over 100 epochs .
+
+Hyperparameters and Validation:I used a batch size of 32 to balance between computational efficiency and model performance.The validation split was set at 20% to ensure a sufficient amount of data for model evaluation while maximizing the data available for training. 
+
+Performance Metrics: befor Fine_ Tunning my model achieved an accuracy of : 0.85% on the training set and 0.77% on the validation set . 
+
+Fine-tuning in my project was implemented as follows: 
+
+Enabling Fine-Tuning: After the initial training, the base model was set to be trainable (base_model.trainable = True). This step allows the weights in the pre-trained layers to be updated during training. 
+
+Selective Layer Training: I decided to fine-tune from a certain layer onwards (fine_tune_at = 100). This means that the layers before the 100th layer in the EfficientNetB0 model were kept frozen (layer.trainable = False for layers in base_model.layers[:fine_tune_at]), and the layers from the 100th onwards were set to be trainable. (which capture more specific features). 
+
+Hyperparameter Optimization and Re-compiling the Model: the learning rate, initially set to 1e-4, and the batch size of 32 were iteratively fine-tuned. This is important in fine-tuning because a lower learning rate ensures that the model does not deviate too much from the learned weights. 
+
+ Continued Training: Finally, the model was trained for additional epochs (FINE_TUNE_EPOCHS = 60, 40). This continued training allowed the trainable layers of the base model to adjust their weights (fine-tune) to better fit the specific data of your project. 
+
+Performance Metrics: 
+befor Fine_ Tuning my model achieved an accuracy of : 0.85% on the training set and 0.77% on the validation set . 
+
+After Fine_ Tuning my model achieved an accuracy of : 0.97% on the training set and 0.91% on the validation set.
+
 
 ### Piyush Deepak (PiyushHemnani@my.unt.edu )
 
