@@ -1,0 +1,5 @@
+*.pth
+*.h5
+.gitignore
+base_model/vgg16_model.h5
+.jpg
