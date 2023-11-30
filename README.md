@@ -227,7 +227,56 @@ Random brightness changes, enhancing contrast by up to 20%. These augmentations 
 
 ### Piyush Deepak (PiyushHemnani@my.unt.edu )
 
-(Continue listing team members and their contributions.)
+For our BrainSynergy Project, the model chosen by me was the UNet Model. UNet has proven to be a powerful tool in the medical industry for analyzing medical images and scans, especially due to the capabilities of its architectures ability to learn on smaller datasets. It is understandable to use UNet because of this factor as patient information is highly confidential and cannot be shared publicly to form large datasets.
+
+Though UNet is typically used for Image Segmentation, that is it is used to make an image more straightforward to analyze and creates objects and boundaries in an image. This process is called mask building that identifies the specific pixels in an image that correspond to an object or a region of interest.
+
+My objective in this project was to change its implementation from Segmentation to classification. The goal was to understand the architecture, modify the final layers by flattening and applying softmax to get the highest probability of the tumor in the image.
+
+## Model Overview
+
+UNet is a type of CNN that gets its name from its distinctive "U-shaped" architecture. The model consists of 2 main paths:
+- Contracting (Downsampling) path
+- Expansive (Upsampling) path
+
+### Contracting/Encoding path
+
+In my program I have implemented 3 encoding blocks.
+
+- It iterates over the 'channels' tuple, minus one. I have set the channels as '(3,16,32,64)', where 3 is the input channels of the image, as the data is in RGB format.
+- Each encoding block consists of 2 convolution layers, followed by compression before going to the next block.
+
+### Expansion/Decoding path
+
+In my program I have implemented 3 encoding blocks. The encFeatures that were the outputs of the last encoding block are the inputs to the Decoding block.
+
+- It follows the reverse path of the encoding block, but still has the same number of blocks/layers.
+- The final output is the same size as the input image.
+
+### Image Processing for final classification
+
+After Encoding and Decoding processes are completed, the image classification process is performed by the head network defined in UNet. Components of this network are:
+
+- Adaptive Average Pooling: The adaptive pool layer performs a global average on the final feature map reducing it to a 1x1 spatial feature while retaining the depth.
+- Flatten Layer: After pooling, flatten converts the 3D map into a 1D vector, which is essential for the final FCL.
+- Linear layer: This Final Layer assesses the flattened vector to the number of classes (4 in our case)
+
+### Explanation of relation between the encoding and Decoding layers
+
+- Early Layers: The early layers/blocks of encoding are set to capture low-level features from images, such as edges, simple shapes. The receptive fields of these layers are typically smaller. Though these layers have high spatial resolution allowing for better fine detail detection.
+
+- Deep Layers: The deep layers/blocks start capturing more complex and abstract features, which include parts of objects and patterns (another reason why the model works better for segmentation). here the spatial resolution decreases due to the pooling layers, but complexity of the features keeps increasing.
+
+- Corresponding Decoding layers: They are typically set for reconstruction and refinement of the entire image; it starts from the abstract outputs of the last encoding layer and progressively adds details. Each decoding layer of the model upsamples the features received and integrates them with the encFeatures with the help of the skip connections connecting encBlock and decBlock.
+
+## Model Prediction
+
+- The saved model path gets initialized and set to .eval().
+- Gradient calculations are disabled.
+- Input processing: All images that will be used for prediction will be checked for image height and width and will undergo normalization. It is also converted to tensor.
+- The image tensor is passed through the model. The predicted class is determined by finding the index with the highest score in the prediction, this represents the most likely class of the image.
+- This is performed on the final Kaggle data set. Disclaimer, "No hyper tuning" of the model was performed using this dataset.
+
 
 ## Evaluation Metrics
 
