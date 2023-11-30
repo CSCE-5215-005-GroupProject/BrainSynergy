@@ -186,7 +186,7 @@ Random brightness changes, enhancing contrast by up to 20%. These augmentations 
 
 - Performance Metrics: befor Fine_ Tunning my model achieved an accuracy of : 0.85% on the training set and 0.77% on the validation set . 
 
-- **Fine-tuning in my project was implemented as follows: **
+### Fine-tuning in my project was implemented as follows:
 
 - Enabling Fine-Tuning: After the initial training, the base model was set to be trainable (base_model.trainable = True). This step allows the weights in the pre-trained layers to be updated during training. 
 
