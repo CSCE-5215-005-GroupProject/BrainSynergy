@@ -6,8 +6,17 @@ This project focuses on the classification of MRI brain scans into one of four c
 
 ## Dataset
 
-The dataset comprises MRI brain scans, presented in a variety of angles and perspectives. Each scan falls into one of four distinct categories, making this a multi-class classification problem. The scans vary in terms of the visible brain regions and include both top-down and profile views. Each image is 256x256. There are 901 instances of class Glioma Tumor, 913 instances of class Meningioma Tumor, 438 instances of class Normal, and 844 instances of class Pituitary Tumor. The link to the dataset can be found on Kaggle here:  https://www.kaggle.com/datasets/thomasdubail/brain-tumors-256x256
+The dataset used in this project comprises MRI brain scans, each categorized into one of four distinct classes. This diversity in the dataset introduces a comprehensive multi-class classification challenge. Key features of the dataset include:
 
+- **Variety of Angles and Perspectives**: The MRI scans present a range of views, including both top-down and profile perspectives.
+- **Multi-Class Classification**: The dataset is structured for a multi-class classification problem with four distinct categories.
+- **Class Distribution**:
+  - **Glioma Tumor**: 901 instances
+  - **Meningioma Tumor**: 913 instances
+  - **Normal (Healthy Brain)**: 438 instances
+  - **Pituitary Tumor**: 844 instances
+- **Image Specifications**: Each scan is a 256x256 pixel image, offering detailed visualization for accurate classification.
+- **Dataset Source**: The dataset is accessible on Kaggle and can be found at the following link: [Brain Tumors 256x256 on Kaggle](https://www.kaggle.com/datasets/thomasdubail/brain-tumors-256x256).
 ## Dataset Preparation
 
 The dataset consists of MRI brain scans, each classified into one of four distinct categories. The preparation of this dataset involves the following steps:
@@ -222,30 +231,10 @@ Random brightness changes, enhancing contrast by up to 20%. These augmentations 
 
 ## Evaluation Metrics
 
-Models are evaluated based on accuracy, precision, recall, F1 score, and other relevant metrics. The internal Kaggle competition setup allows for a fair and objective comparison of model performances.
+Models are evaluated based on accuracy using an internal Kaggle competition setup allows for a fair and objective comparison of model performances. Additional metrics may be offered in each group members' respective directory. 
 
 ## Usage
 
 Instructions on how to set up the environment, train models, and evaluate them can be found in the respective model directories.
 
-### Prerequisites
-
-- TensorFlow
-- Keras
-- NumPy
-- Pandas
-- (Any other necessary libraries or tools)
-
-### Installation and Setup
-
-(Provide detailed instructions on how to install and set up the project, including any necessary virtual environments or dependencies.)
-
-### Running the Models
-
-(Provide step-by-step instructions on how to run the models, including any necessary commands or scripts.)
-
-
-## Acknowledgements
-
-(Any acknowledgments to data providers, supporting organizations, or individuals who have contributed to the project.)
 
