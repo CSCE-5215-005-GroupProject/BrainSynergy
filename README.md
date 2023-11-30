@@ -22,7 +22,7 @@ The dataset consists of MRI brain scans, each classified into one of four distin
 - The remaining 80% of the images are available for training and validation purposes.
 - Each team member may choose their method of further splitting this subset for their model development.
 
-## Team Members and Their Contributions
+## Team Members' Models
 
 Below are the team members involved in this project, each with a subsection dedicated to their specific model and data plan.
 
