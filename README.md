@@ -12,15 +12,17 @@ The dataset comprises MRI brain scans, presented in a variety of angles and pers
 
 The dataset consists of MRI brain scans, each classified into one of four distinct categories. The preparation of this dataset involves the following steps:
 
-### Step 1: Reserve Anonymous Kaggle Test Set
+### Step 1: Reserve Anonymous Kaggle Test Set (data/kaggle_solutionSet)
 
 - 20% of the total images (3,096) are reserved for the Kaggle competition.
 - This results in 619 images set aside for unbiased testing.
 
-### Step 2: Dataset Split for Model Development
+### Step 2: Dataset Split for Model Development (data/competition_data)
 
 - The remaining 80% of the images are available for training and validation purposes.
 - Each team member may choose their method of further splitting this subset for their model development.
+
+These steps occur in the datasetPrep.ipynb file within the data folder. 
 
 ## Team Members' Models
 
